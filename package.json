@@ -1,0 +1,16 @@
+{
+  "name": "mathjax-png",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": { "mathjaxpng": "bin/index.js" },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "mathjax-node": "^0.5.1"
+  }
+}
