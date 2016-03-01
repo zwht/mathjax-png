@@ -1,124 +1,43 @@
-var cluster = require('cluster');
-var http = require('http');
-var numCPUs = require('os').cpus().length;
-
-function startMathJax(){
-    var mjAPI = require("MathJax-node/lib/mj-single");
-    mjAPI.config({
-        MathJax: {
-            SVG: {
-                font: "STIX-Web"
-            },
-            tex2jax: {
-                preview: ["[math]"],
-                processEscapes: true,
-                processClass: ['math'],
-//                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-//                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-                skipTags: ["script","noscript","style","textarea","pre","code"]
-            },
-            TeX: {
-                noUndefined: {disabled: true},
-                Macros: {
-                  mbox: ['{\\text{#1}}',1],
-                  mb: ['{\\mathbf{#1}}',1],
-                  mc: ['{\\mathcal{#1}}',1],
-                  mi: ['{\\mathit{#1}}',1],
-                  mr: ['{\\mathrm{#1}}',1],
-                  ms: ['{\\mathsf{#1}}',1],
-                  mt: ['{\\mathtt{#1}}',1]
-                }
-            }
-        }
-    });
-    mjAPI.start();
-    return mjAPI;
-}
-
-function handleRequest(mjAPI, request, response){
-    var str_params = "";
-    request.on('data', function(chunk){str_params += chunk;});
-    request.on('end', function(){
-        console.log(str_params);
-        var params = JSON.parse(str_params);
-        mjAPI.typeset(params, function(result){
-            console.log(result);
-            if (!result.errors) {
-                if (params.svg) {
-                    response.writeHead(200, {'Content-Type': 'image/svg+xml'});
-                    response.end(result.svg);
-                }
-                else if (params.mml) {
-                    response.writeHead(200, {'Content-Type': 'application/mathml+xml'});
-                    response.end(result.mml);
-                }
-                else if (params.png) {
-                    response.writeHead(200, {'Content-Type': 'image/png'});
-                    // The reason for slice(22) to start encoding (from str to binary)
-                    // after base64 header info--data:image/png;base64,
-                    response.end(new Buffer(result.png.slice(22), 'base64'));
-                }
-            } else {
-                response.writeHead(400, {'Content-Type': 'text/plain'});
-                response.write('Error 400: Request Failed. \n');
-                response.write(String(result.errors) + '\n');
-                response.write(str_params + '\n');
-                response.end();
-            }
-        });
-    });
-}
-
-var createServer = function(port) {
-    var domain = require('domain');
-    var mjAPI = startMathJax();
-    var server = http.createServer(function (request, response) {
-        var d = domain.create();
-        d.on('error', function(er) {
-            console.error('error', er.stack);
-            try {
-                var killtimer = setTimeout(function(){
-                    process.exit(1);
-                }, 30000);
-                killtimer.unref();
-                server.close();
-                cluster.worker.disconnect();
-                response.statusCode = 500;
-                response.setHeader('content-type', 'text/plain');
-                response.end('problem!\n');
-            } catch (er2) {
-                console.error('Error, sending 500.', er2.stack);
-            }
-        });
-        d.add(request);
-        d.add(response);
-        d.run(function(){
-            handleRequest(mjAPI, request, response);
-        });
-    });
-    server.listen(port, function(){
-        console.log('Server listening on port %s' , port);
-    });
-    return server;
+#!/usr/bin/env node
+var program = require('commander');
+var appInfo = require('./package.json');
+var createPng = require('./bin/createPng');
+var fs=require("fs");
+global.config={
+	pngPath:"E:/newsvn/tem-frontend-mathjaxPng/mathjax.png"
 };
 
-exports.start = function(port){
-    if (cluster.isMaster) {
-      // Fork workers.
-      for (var i = 0; i < numCPUs; i++) {
-        cluster.fork();
-      }
+program
+	.version(appInfo.version)
+	.usage('输入mathjax字符串，生成png，返回文件路径。[options] <package>');
 
-      cluster.on('disconnect', function(worker) {
-        console.error('disconnect!');
-        cluster.fork();
-      });
+//像git风格一样的子命令
+program
+	//子命令
+	.command('mathjax <mathjax>')
+	//短命令 - 简写方式
+	.alias('rs')
+	//说明
+	.description('输入mathjax字符串，生成png，返回文件路径。！')
+	//resume的子命令
+	//.option("-n, --name <mode>", "然并卵")
+	//注册一个callback函数
+	.action(function(mathjax, options){
+		fs.unlink(global.config.pngPath,callback);
+		function callback(){
+			createPng.init(mathjax);
+		}
+	}).on('--help', function() {
+		//这里输出子命令的帮助
+		console.log('  Examples:');
+		console.log('    运行方法：');
+		console.log('    $ ./index.js mathajx YiArIHkgPSBcc3FydHtmfSA9IFxzdW1fbl41IHt4fQ==');
+		console.log();
+	});
 
-      cluster.on('exit', function(worker, code, signal) {
-        console.log('worker ' + worker.process.pid + ' died');
-      });
-    } else {
-        createServer(port);
+program.parse(process.argv);
 
-    }
-};
+
+
+
+

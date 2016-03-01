@@ -39,7 +39,8 @@ function creatPng(str,callBack) {
 	json.math = str;
 	mjAPI.typeset(json, function (data) {
 		if (!data.errors) {
-			callBack(data.png);
+			console.log(data.png);
+			//callBack(data.png);
 		}
 	});
 }
