@@ -1,0 +1,95 @@
+{
+  "name": "riot",
+  "version": "2.3.13",
+  "description": "A React-like user interface micro-library",
+  "homepage": "http://riotjs.com/",
+  "repository": "riot/riot",
+  "author": "Muut, Inc. and other contributors",
+  "contributors": [
+    "Richard Bondi",
+    "Gianluca Guarini",
+    "Tsutomu Kawamura",
+    "Alberto Martínez",
+    "Tero Piirainen"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "test": "make riot"
+  },
+  "keywords": [
+    "custom tags",
+    "custom elements",
+    "web components",
+    "virtual dom",
+    "shadow dom",
+    "polymer",
+    "react",
+    "jsx",
+    "minimal",
+    "minimalist",
+    "client-side",
+    "framework",
+    "declarative",
+    "templating",
+    "template",
+    "data binding",
+    "mvc",
+    "router",
+    "model",
+    "view",
+    "controller",
+    "riotjs",
+    "riot.js"
+  ],
+  "dependencies": {
+    "riot-cli": "^2.3.14",
+    "riot-compiler": "^2.3.20",
+    "riot-observable": "^2.3.14",
+    "riot-route": "^2.3.15",
+    "riot-tmpl": "^2.3.20",
+    "simple-dom": "0.2.7",
+    "simple-html-tokenizer": "^0.2.1"
+  },
+  "devDependencies": {
+    "cheerio": "^0.19.0",
+    "coveralls": "^2.11.6",
+    "eslint": "^1.10.3",
+    "expect.js": "^0.3.1",
+    "istanbul": "^0.4.2",
+    "glob": "^6.0.4",
+    "jsdom": "^7.2.2",
+    "karma": "^0.13.19",
+    "karma-coverage": "^0.5.3",
+    "karma-mocha": "^0.2.1",
+    "karma-phantomjs-launcher": "^0.2.3",
+    "karma-sauce-launcher": "^0.3.0",
+    "mocha": "^2.3.4",
+    "smash": "0.0.15",
+    "phantomjs": "^1.9.19",
+    "uglify-js": "latest"
+  },
+  "preferGlobal": true,
+  "files": [
+    "lib",
+    "riot.js",
+    "riot.min.js",
+    "riot+compiler.js",
+    "riot+compiler.min.js"
+  ],
+  "bin": {
+    "riot": "node_modules/.bin/riot"
+  },
+  "main": "lib/server/index.js",
+  "browser": "riot.js",
+  "spm": {
+    "main": "riot.js",
+    "ignore": [
+      "test",
+      "lib",
+      "make"
+    ]
+  }
+}

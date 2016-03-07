@@ -1,16 +1,20 @@
 {
-  "name": "mathjax-png",
+  "name": "mathjaxToPng_and_htmlToPdf",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "魏翼超然",
   "license": "ISC",
-  "bin": { "mathjaxpng": "index.js" },
+  "bin": {
+    "htmlToPdf": "htmlToPdf.js"
+  },
   "dependencies": {
-    "commander": "^2.9.0",
     "mathjax-node": "^0.5.1"
+  },
+  "devDependencies": {
+    "riot-compiler": "^2.3.22"
   }
 }
