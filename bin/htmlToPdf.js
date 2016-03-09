@@ -10,7 +10,7 @@ phantom.create().then(function(ph) {
 			page.property('paperSize', {format: 'A4', orientation: 'portrait', margin: '1cm'}).then(function() {});
 
 			page.property('content').then(function(content) {
-				page.render(opts[0].replace(".html","")+".png", {format: 'png', quality: '100'});
+				//page.render(opts[0].replace(".html","")+".png", {format: 'png', quality: '100'});
 				page.render(opts[0].replace(".html","")+".pdf", {format: 'pdf', quality: '300'});
 				//page.close();
 				console.log("succeed");

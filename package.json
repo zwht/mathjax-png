@@ -13,8 +13,5 @@
   },
   "dependencies": {
     "mathjax-node": "^0.5.1"
-  },
-  "devDependencies": {
-    "riot-compiler": "^2.3.22"
   }
 }

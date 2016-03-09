@@ -29,7 +29,7 @@ mjAPI.config({
 	}
 });
 mjAPI.start();
-//node ./bin/mathjaxToPng E:/newsvn/tem-frontend-mathjaxPng/src/views/wrongQuestion.html
+//node ./bin/mathjaxToPng E:/newsvn/tem-frontend-pdf/src/views/test.txt
 
 var replaceArr=[
 	/*{
@@ -37,6 +37,7 @@ var replaceArr=[
 		replaced:"\\leq"
 	}*/
 ];
+
 
 fs.readFile(opts[0],{encoding:'utf8',flag:'r'},function (err, data) {
 	if (err) {

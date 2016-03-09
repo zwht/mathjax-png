@@ -1,1 +1,1 @@
-{{S}_{\vartriangle}}=\frac{1}{2}OE\cdot OF=\frac{1}{2}{{x}^{2}}(0 < x ≤ 6)
+﻿y=-x(x-1)(0≤x≤1)
