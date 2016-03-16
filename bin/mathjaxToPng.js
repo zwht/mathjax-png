@@ -32,10 +32,18 @@ mjAPI.start();
 //node ./bin/mathjaxToPng E:/newsvn/tem-frontend-pdf/src/views/test.txt
 
 var replaceArr=[
-	/*{
+	{
 		reqExp:/≤/g,
 		replaced:"\\leq"
-	}*/
+	},
+	{
+		reqExp:/≥/g,
+		replaced:"\\geq"
+	},
+	{
+		reqExp:/△/g,
+		replaced:"\\bigtriangleup"
+	}
 ];
 
 

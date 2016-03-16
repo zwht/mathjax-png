@@ -3,14 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "private": true,
   "author": "魏翼超然",
   "license": "ISC",
-  "bin": {
-    "htmlToPdf": "htmlToPdf.js"
-  },
   "dependencies": {
     "mathjax-node": "^0.5.1"
   }
