@@ -6,6 +6,7 @@ var opts = process.argv.splice(2);
 phantom.create().then(function(ph) {
 	ph.createPage().then(function(page) {
 		page.open("file:///"+opts[0]).then(function(status) {
+			console.log(status)
 			page.property('viewportSize', {width: 720,height:1}).then(function() {});
 			page.property('paperSize', {format: 'A4', orientation: 'portrait', margin: '1cm'}).then(function() {});
 
