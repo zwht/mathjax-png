@@ -43,15 +43,10 @@
 	                <div class="str">
 		                <span class="" each={  subItem, j in item.question.stemArr }>
 		                    <span if={ subItem.type==="text" }>{ subItem.str }</span>
-							<img if={ subItem.type==="img"&&subItem.str } src="{ subItem.str }" onload="(this.style
-							.width=this.clientWidth*0.7+'px')"/>
-							<img onload="(this.style.width=this.clientWidth*0.7+'px')" if={ subItem
-							.type==="mathjax"&&subItem.str } src="http://172.16.3.43/{ subItem.str
-							}"/>
+
 		                </span>
 		                <span class="" each={  subItem, j in item.question.stemArrG }>
-		                    <img if={ subItem } src="{ subItem }" onload="(this.style
-							.width=this.clientWidth*0.7+'px')"/>
+
 		                </span>
 	                </div>
 
@@ -60,11 +55,7 @@
 	                <div class="str">
 		                <span class="" each={  subItem, j in item.question.subStemArr }>
 		                    <span if={ subItem.type==="text" }>{ subItem.str }</span>
-							<img onload="(this.style.width=this.clientWidth*0.7+'px')" if={ subItem
-							.type==="img"&&subItem.str } src="{ subItem.str }"/>
-							<img onload="(this.style.width=this.clientWidth*0.7+'px')" if={ subItem
-							.type==="mathjax"&&subItem.str } src="http://172.16.3.43/{ subItem.str
-							}"/>
+
 		                </span>
 	                </div>
 
@@ -83,15 +74,10 @@
 	                    <div class="answersLine" each={  answersItem in item.stdAnswers }>
 	                        <span class="" each={  subItem, j in answersItem.stemArr }>
 			                    <span if={ subItem.type==="text" }>{ subItem.str }</span>
-								<img if={ subItem.type==="img"&&subItem.str } src="{ subItem.str }" onload="(this.style
-								.width=this.clientWidth*0.7+'px')"/>
-								<img onload="(this.style.width=this.clientWidth*0.7+'px')" if={ subItem
-								.type==="mathjax"&&subItem.str } src="http://172.16.3.43/{ subItem.str
-								}"/>
+
 			                </span>
 			                <span class="44" each={  subItem, j in answersItem.stemArrG }>
-			                    <img if={ subItem } src="{ subItem }" onload="(this.style
-								.width=this.clientWidth*0.7+'px')"/>
+
 			                </span>
 	                    </div>
 
@@ -109,7 +95,7 @@
 
 </script>
 <!-- mount the tag -->
-<script>
+<script>z
 	this.message = '错题';
 	var i= 0,j= 0,k= 0,f=0,mathjaxKey=0;
 
